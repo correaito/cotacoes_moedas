@@ -48,7 +48,7 @@ Da sua linha de comando:
  
 https://docs.google.com/uc?id=
 
-<img src="https://drive.google.com/file/d/1WLMW9VCeatSNAh61sZAHO3lNAC0Ylhgx">
+ ![imagem](https://docs.google.com/uc?id=1WLMW9VCeatSNAh61sZAHO3lNAC0Ylhgx)
 
  Nessa sessão, você deverá incluir um arquivo excel com as moedas a serem cotadas na primeira coluna, conforme modelo "Moedas.xlsx" disponível nesse repositório. O arquivo gerado será "Cotação_Moedas.xlsx" no mesmo diretório. 
 
