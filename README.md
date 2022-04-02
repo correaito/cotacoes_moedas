@@ -44,7 +44,7 @@ Da sua linha de comando:
  
      $ python ProjetoTkinter.py
      
- Cotações de Múltiplas Moedas
+ • Cotações de Múltiplas Moedas
  
 ![imagem](https://docs.google.com/uc?id=1WLMW9VCeatSNAh61sZAHO3lNAC0Ylhgx)
 
