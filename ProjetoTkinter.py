@@ -50,8 +50,8 @@ def selecionar_arquivo():
 def atualizar_cotacoes():
     try:
         # aqui faremos a barra de progresso aparecer
-        pb1 = ttk.Progressbar(janela, variable=var_barra, orient=HORIZONTAL, maximum=100)
-        pb1.grid(row=11, column=0, sticky='nsew', columnspan=3, padx=10, pady=10)
+        barra_progresso = ttk.Progressbar(janela, variable=var_barra, orient=HORIZONTAL, maximum=100)
+        barra_progresso.grid(row=11, column=0, sticky='nsew', columnspan=3, padx=10, pady=10)
 
         # ler o df de moedas
         df = pd.read_excel(var_caminhoarquivo.get())
@@ -74,16 +74,18 @@ def atualizar_cotacoes():
         
         # para cada moeda
         for moeda in moedas:
+            # vamos limpar a mensagem de sucesso caso o usuario utilize a funcao mais de uma vez
+            label_atualizarcotacoes['text'] = ""
+
+            lista_cotacoes = []
 
             # aqui incrementamos o valor da variavel da barra de progresso
             soma_percent += calc_perc
             var_barra.set(soma_percent)
-            janela.update()
-
-            lista_cotacoes = []
 
             # aqui criei um laço para fazer uma requisição por vez com o link de cotação de moeda única (*ajuste)
             for i in range(qnt_dias):
+
                 # vamos pegar a primeira data e somar 1 dia a cada volta do laço
                 soma_dia = d1 + timedelta(days=i)
                 soma_dia = datetime.strftime(soma_dia, '%d/%m/%Y')
@@ -124,6 +126,10 @@ def atualizar_cotacoes():
         df.to_excel('Cotações_Moedas.xlsx')
         label_atualizarcotacoes['fg'] = 'green'
         label_atualizarcotacoes['text'] = "Arquivo Atualizado com Sucesso"
+        # e atualizamos a janela
+        janela.update()
+        # remove a barra de progresso apos completar o ciclo
+        barra_progresso.grid_remove()
     except:
         # caso o usuario tenha pego um arquivo de formato incorreto
         label_atualizarcotacoes['fg'] = 'red'
