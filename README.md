@@ -44,7 +44,7 @@ Da sua linha de comando:
  
      $ python ProjetoTkinter.py
      
- Em cotações de múltiplas moedas, você deverá incluir um arquivo excel com as moedas a serem cotadas na primeira coluna, conforme arquivo-modelo Moedas.xlsx desse repositório. 
+ Em cotações de múltiplas moedas, você deverá incluir um arquivo excel com as moedas a serem cotadas na primeira coluna, conforme arquivo-modelo "Moedas.xlsx" disponível nesse repositório. 
 
 ------------
 Feito com ♥ por Alan Garmatter. [Visite meu LinkedIn](https://www.linkedin.com/in/alan-garmatter-8a05601b8/)! 👋 
