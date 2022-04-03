@@ -26,16 +26,21 @@ var_barra = DoubleVar()
 
 # função que irá pegar a cotação única de moeda
 def pegar_cotacao():
-    moeda = combobox_selecionarmoeda.get()
-    data_cotacao = calendario_moeda.get()
-    ano = data_cotacao[-4:]
-    mes = data_cotacao[3:5]
-    dia = data_cotacao[:2]
-    link = f'https://economia.awesomeapi.com.br/json/daily/{moeda}-BRL/?start_date={ano}{mes}{dia}&end_date={ano}{mes}{dia}'
-    requisicao_moeda = requests.get(link)
-    cotacao = requisicao_moeda.json()
-    valor_moeda = cotacao[0]['bid']
-    label_textocotacao['text'] = f"A cotação da {moeda} no dia {data_cotacao} foi de R$ {valor_moeda}"
+    try:
+        moeda = combobox_selecionarmoeda.get()
+        data_cotacao = calendario_moeda.get()
+        ano = data_cotacao[-4:]
+        mes = data_cotacao[3:5]
+        dia = data_cotacao[:2]
+        link = f'https://economia.awesomeapi.com.br/json/daily/{moeda}-BRL/?start_date={ano}{mes}{dia}&end_date={ano}{mes}{dia}'
+        requisicao_moeda = requests.get(link)
+        cotacao = requisicao_moeda.json()
+        valor_moeda = cotacao[0]['bid']
+        label_textocotacao['fg'] = 'green'
+        label_textocotacao['text'] = f"A cotação da {moeda} no dia {data_cotacao} foi de R$ {valor_moeda}"
+    except:
+        label_textocotacao['fg'] = 'red'
+        label_textocotacao['text'] = "Verifique se você selecionou uma data de pregão ou uma moeda válida"
 
 # função que irá pedir ao usuario para selecionar a planilha com as moedas a serem cotadas
 def selecionar_arquivo():
@@ -49,16 +54,16 @@ def selecionar_arquivo():
 # Obs (tive que fazer um ajuste, pois o link de intervalo de datas do Awesome API não estava funcionando)
 def atualizar_cotacoes():
     try:
-        # aqui faremos a barra de progresso aparecer
-        barra_progresso = ttk.Progressbar(janela, variable=var_barra, orient=HORIZONTAL, maximum=100)
-        barra_progresso.grid(row=11, column=0, sticky='nsew', columnspan=3, padx=10, pady=10)
-
         # ler o df de moedas
         df = pd.read_excel(var_caminhoarquivo.get())
         moedas = df.iloc[:,0]
         # pegas a data de de inicio e data de fim das cotacoes
         data_inicial = calendario_datainicial.get()
         data_final = calendario_datafinal.get()
+
+        # aqui faremos a barra de progresso aparecer
+        barra_progresso = ttk.Progressbar(janela, variable=var_barra, orient=HORIZONTAL, maximum=100)
+        barra_progresso.grid(row=11, column=0, sticky='nsew', columnspan=3, padx=10, pady=10)
         
         # vamos calcular a diferença entre as datas
         d2 = datetime.strptime(data_final, '%d/%m/%Y')
