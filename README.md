@@ -51,4 +51,4 @@ Da sua linha de comando:
  Nessa sessão, você deverá incluir um arquivo excel com as moedas a serem cotadas na primeira coluna, conforme modelo "Moedas.xlsx" disponível nesse repositório. O arquivo gerado será "Cotação_Moedas.xlsx" no mesmo diretório. 
 
 ------------
-Feito com ♥ por Alan Garmatter. [Visite meu LinkedIn](https://www.linkedin.com/in/alan-garmatter-8a05601b8/)! 👋 
+Feito com ♥ por Alan Garmatter.
